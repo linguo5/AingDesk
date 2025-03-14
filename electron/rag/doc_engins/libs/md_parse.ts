@@ -95,6 +95,7 @@ export class MdParser {
       // 创建唯一图片名
       const uniqueImageName = `${pub.md5(`${this.baseDocName}_${this.imageIndex++}`)}${ext}`;
     const imagePath = path.join(outputDir, this.ragName, 'images', uniqueImageName);
+    if(pub.file_exists(imagePath)) pub.mkdir(imagePath);
     const imageUrl = `${IMAGE_URL_LAST}/images?r=${this.ragName}&n=${uniqueImageName}`;
       
       // 保存图片
@@ -115,6 +116,7 @@ export class MdParser {
    * 处理Markdown中的图片引用
    */
   private async processImages(): Promise<void> {
+    if(this.ragName == 'temp') return;
     // 匹配Markdown中的图片引用 ![alt](url)
     const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
     let match;

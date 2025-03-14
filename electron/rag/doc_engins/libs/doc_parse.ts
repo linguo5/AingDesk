@@ -66,24 +66,30 @@ export class DocxParser {
    * @returns 图片保存路径和URL
    */
   private saveImage(imageData: Uint8Array, imageName: string): { path: string; url: string } {
-    // 创建图片保存目录
-    const outputDir = IMAGE_SAVE_PATH
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
+    try{
+      // 创建图片保存目录
+      const outputDir = IMAGE_SAVE_PATH
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
+
+      // 获取图片扩展名
+      const ext = path.extname(imageName);
+
+      // 创建唯一图片名
+      const uniqueImageName = `${pub.md5(`${this.baseDocName}_${this.ragName}_${this.imageIndex++}`)}${ext}`;
+      const imagePath = path.join(outputDir, this.ragName, 'images', uniqueImageName);
+      if(!pub.file_exists(imagePath)) pub.mkdir(imagePath);
+      const imageUrl = `${IMAGE_URL_LAST}/images?r=${this.ragName}&n=${uniqueImageName}`;
+
+      // 保存图片
+      fs.writeFileSync(imagePath, Buffer.from(imageData));
+
+      return { path: imagePath, url: imageUrl };
+    } catch (error) {
+      console.error('保存图片失败:', error);
+      return { path: '', url: '' };
     }
-
-    // 获取图片扩展名
-    const ext = path.extname(imageName);
-
-    // 创建唯一图片名
-    const uniqueImageName = `${pub.md5(`${this.baseDocName}_${this.ragName}_${this.imageIndex++}`)}${ext}`;
-    const imagePath = path.join(outputDir, this.ragName, 'images', uniqueImageName);
-    const imageUrl = `${IMAGE_URL_LAST}/images?r=${this.ragName}&n=${uniqueImageName}`;
-
-    // 保存图片
-    fs.writeFileSync(imagePath, Buffer.from(imageData));
-
-    return { path: imagePath, url: imageUrl };
   }
 
   /**
@@ -125,6 +131,7 @@ export class DocxParser {
    * @param imageRelationships 图片关系映射
    */
   private processImages(paragraph: string, imageRelationships: ImageRelationship): void {
+    if(this.ragName == 'temp') return;
     if (!this.zip) return;
 
     const imageMatch = paragraph.match(/<a:blip r:embed="([^"]+)"/);
@@ -144,13 +151,15 @@ export class DocxParser {
     const { path: savedPath, url: imageUrl } = this.saveImage(imageData, imageName);
 
     // 将图片信息添加到文档内容中
-    this.documentContent.push({
-      type: 'image',
-      name: imageName,
-      path: savedPath,
-      url: imageUrl,
-      data: imageData
-    });
+    if(imageUrl){
+      this.documentContent.push({
+        type: 'image',
+        name: imageName,
+        path: savedPath,
+        url: imageUrl,
+        data: imageData
+      });
+    }
   }
 
   /**

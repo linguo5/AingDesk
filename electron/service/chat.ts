@@ -2,6 +2,7 @@ import { logger } from 'ee-core/log';
 import { pub } from '../class/public';
 import * as path from 'path';
 import { parseDocument } from '../rag/doc_engins/doc';
+import { is } from 'cheerio/dist/commonjs/api/traversing';
 
 /**
  * 定义聊天历史记录的类型
@@ -288,14 +289,23 @@ export class ChatService {
     /**
      * 处理文档和图片文件
      * @param chatContext <ChatContext> 聊天上下文
+     * @param isVision <boolean> 是否是视觉模型
      * @param uuid <string> 对话的唯一标识符
      */
-    async handle_files(chatContext: ChatContext): Promise<ChatContext> {
+    async handle_files(chatContext: ChatContext,isVision:boolean): Promise<ChatContext> {
         
         // 将图片转换为base64格式
-        chatContext.images = chatContext.images.map((image) => {
-            return pub.imageToBase64(image);
-        });
+        let images:string[] = []
+        for(let image of chatContext.images){
+            if(isVision){
+                let base64 = pub.imageToBase64(image);
+                images.push(base64);
+            }else{
+                let imageOcr = await parseDocument(image,"temp",false);
+                images.push(imageOcr.content);
+            }
+        }
+        chatContext.images = images;
 
         // 处理文档文件
         let doc_files:string[] = []
@@ -316,9 +326,10 @@ export class ChatService {
      * @param {ChatContext} chatContext - 当前的聊天上下文
      * @param {number} contextLength - 上下文的最大长度
      * @param {boolean} isTempChat - 是否是临时聊天
+     * @param {boolean} isVision - 是否是视觉模型
      * @returns {object[]} - 构造后的历史对话记录数组
      */
-    async build_chat_history(uuid: string, chatContext: ChatContext, contextLength: number,isTempChat:boolean): Promise<any[]> {
+    async build_chat_history(uuid: string, chatContext: ChatContext, contextLength: number,isTempChat:boolean,isVision:boolean): Promise<any[]> {
         // 读取对话的历史记录
         let contextList = this.read_history(uuid);
         // 计算当前聊天上下文和历史记录的总 tokens 数量
@@ -338,7 +349,7 @@ export class ChatService {
         // 提取历史记录中的角色和内容信息
         let historyList = contextList.map(item => ({ role: item.role, content: item.content }));
 
-        chatContext = await this.handle_files(chatContext);
+        chatContext = await this.handle_files(chatContext,isVision);
         
         // 添加当前聊天上下文到历史记录中
         // 如果有images或doc_files的情况下，不引用上下文

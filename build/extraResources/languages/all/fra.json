@@ -730,5 +730,13 @@
     "c32ea20471d4fc6589aa4cb3b7c6bdec": {
         "src": "以下是用户上传的文档内容",
         "dst": "Voici le contenu des documents téléchargés par les utilisateurs"
+    },
+    "20def7942674282277c3714ed7ea6ce0": {
+        "src": "图片",
+        "dst": "Images"
+    },
+    "29edf39066579d275e67123d77b2a5fa": {
+        "src": "OCR解析结果",
+        "dst": "Résultats de l'analyse ocr"
     }
 }

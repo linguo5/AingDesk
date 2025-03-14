@@ -17,6 +17,8 @@
     "5a37bcc89177672fc8743f323497fa49": "Contenido ingresado por el usuario",
     "0e51fafaacc333cf882805ac55d25b05": "Documentos de usuario",
     "2d711b09bd0db0ad240cc83b30dd8014": "Contenido",
+    "20def7942674282277c3714ed7ea6ce0": "Imagen",
+    "29edf39066579d275e67123d77b2a5fa": "Resultados del análisis OCR",
     "6c96024718300bf395fb132f298e96cf": "Se produjo un error al llamar a la interfaz del modelo:",
     "36fee61ba46375552deae7844d136d70": "Error al llamar a la interfaz del modelo",
     "34fc43634c9c77b3ea0dcb82998d9931": "\\n\\n---\\n**el contenido está incompleto:** El usuario deja de generar manualmente?",

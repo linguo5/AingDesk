@@ -152,11 +152,12 @@ export class PdfParser {
 
       const uniqueImageName = `${pub.md5(`${this.baseDocName}_page${pageNumber}_img${index}`)}.png`;
       const imagePath = path.join(fullOutputDir, uniqueImageName);
+      if(pub.file_exists(imagePath)) pub.mkdir(imagePath);
       const imageUrl = `${IMAGE_URL_LAST}/images?r=${this.ragName}&n=${uniqueImageName}`;
 
       const buffer = Buffer.isBuffer(imageData) ? imageData : Buffer.from(imageData);
       fs.writeFileSync(imagePath, buffer);
-
+      
       return {
         originalRef: `page${pageNumber}_img${index}`,
         newPath: imagePath,
@@ -176,7 +177,8 @@ export class PdfParser {
    * @param pageNumber 页码
    * @returns 页面中的图像项
    */
-  private async extractPageImages(page: pdfjsLib.PDFPageProxy, pageNumber: number): Promise<ImageItem[]> {
+  private async extractPageImages(page: pdfjsLib.PDFPageProxy, pageNumber: number): Promise<ImageItem[] | null> {
+    if(this.ragName == 'temp') return null;
     const pageImages: ImageItem[] = [];
 
     try {
