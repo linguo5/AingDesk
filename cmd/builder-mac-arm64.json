@@ -1,7 +1,7 @@
 {
-  "productName": "AingDesk",
-  "appId": "com.bt.AingDesk",
-  "copyright": "Guangdong Baota Safety Technology Co., Ltd.",
+  "productName": "AiChat",
+  "appId": "cn.lingo.AiChat",
+  "copyright": "",
   "directories": {
     "output": "out"
   },
@@ -34,7 +34,7 @@
     "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
     "darkModeSupport": true,
     "hardenedRuntime": true,
-    "gatekeeperAssess":false,
+    "gatekeeperAssess": false,
     "identity": ""
   }
 }

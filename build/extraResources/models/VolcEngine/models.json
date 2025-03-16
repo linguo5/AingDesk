@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "title": "火山引擎/deepseek-r1-250120",
+        "modelName": "deepseek-r1-250120",
+        "supplierName": "VolcEngine",
+        "capability": [
+            "llm"
+        ],
+        "status": true
+    }
+]

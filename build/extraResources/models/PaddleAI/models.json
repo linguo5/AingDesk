@@ -1,23 +1,29 @@
 [
     {
-        "title":"",
+        "title": "",
         "supplierName": "ppaistudio",
         "modelName": "deepseek-r1:32b",
-        "capability": ["llm"],
+        "capability": [
+            "llm"
+        ],
         "status": true
     },
     {
-        "title":"",
+        "title": "",
         "supplierName": "ppaistudio",
         "modelName": "deepseek-r1:14b",
-        "capability": ["llm"],
+        "capability": [
+            "llm"
+        ],
         "status": true
     },
     {
-        "title":"",
+        "title": "",
         "supplierName": "ppaistudio",
         "modelName": "qwq:32b",
-        "capability": ["llm"],
+        "capability": [
+            "llm"
+        ],
         "status": true
     }
 ]

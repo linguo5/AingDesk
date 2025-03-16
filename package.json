@@ -1,8 +1,8 @@
 {
-  "name": "aingdesk",
+  "name": "aichat",
   "version": "1.1.4",
   "description": "Simple and easy-to-use AI big model deployment and usage software",
-  "productName": "AingDesk",
+  "productName": "AiChat",
   "main": "./public/electron/main.js",
   "scripts": {
     "dev": "ee-bin dev",
@@ -34,11 +34,7 @@
     "debug-move": "ee-bin move --flag=frontend_dist"
   },
   "repository": "https://github.com/aingdesk/aingdesk",
-  "keywords": [
-    "AingDesk",
-    "baota",
-    "Aing-Desk"
-  ],
+  "keywords": [],
   "author": {
     "name": "bt.cn",
     "email": "hwl@bt.cn"

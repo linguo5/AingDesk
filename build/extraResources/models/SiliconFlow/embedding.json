@@ -1,1 +1,47 @@
-[]
+[
+    {
+        "title": "",
+        "supplierName": "SiliconFlow",
+        "modelName": "BAAI/bge-large-en-v1.5",
+        "capability": [
+            "embedding"
+        ],
+        "status": false
+    },
+    {
+        "title": "",
+        "supplierName": "SiliconFlow",
+        "modelName": "BAAI/bge-large-zh-v1.5",
+        "capability": [
+            "embedding"
+        ],
+        "status": false
+    },
+    {
+        "title": "",
+        "supplierName": "SiliconFlow",
+        "modelName": "netease-youdao/bce-embedding-base_v1",
+        "capability": [
+            "embedding"
+        ],
+        "status": false
+    },
+    {
+        "title": "",
+        "supplierName": "SiliconFlow",
+        "modelName": "BAAI/bge-m3",
+        "capability": [
+            "embedding"
+        ],
+        "status": false
+    },
+    {
+        "title": "",
+        "supplierName": "SiliconFlow",
+        "modelName": "Pro/BAAI/bge-m3",
+        "capability": [
+            "embedding"
+        ],
+        "status": false
+    }
+]

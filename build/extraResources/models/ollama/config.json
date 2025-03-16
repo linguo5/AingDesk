@@ -1,0 +1,13 @@
+{
+    "supplierTitle": "ollama",
+    "supplierName": "ollama",
+    "baseUrl": "http://localhost:11434/v1",
+    "baseUrlExample": "http://localhost:11434/v1",
+    "isUseUrlExample": true,
+    "apiKey": "-",
+    "home": "https://ollama.org.cn",
+    "help": "https://ollama.org.cn",
+    "status": true,
+    "sort": 0,
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHr8AAB6/AUP9bJoAAALFSURBVEhL7ZVNKLxRFMafYRRSRGQx8l00pQg7U5MsLe2MUDRlbVjKctZWbGTja0U+R5SFZlgwpEhqRjQ+yogF+Tz/+x6npnfeq1nJ5v/bvO957r1z3ufcc+/YSIFfJE2ev8bfJri8vMTExAReXl5ESfD09ISpqSk8PDyI8gPGHuh4e3uj9vZ2KioqosHBQVET9Pf3U35+PvX29oqi50cHx8fHiMfjWF1dxfb2Ns7Pz7G0tMTx0dERwuEw1tbW+P3q6kpWWbHL08L9/T0KCgrQ0NCA5+dntLa2wul04uvrC4eHh6ipqUFTUxPy8vJwd3cHh8MhK5MQJxb29/eprKyMPB4PlZaW0tbWlowQzc3Ncem6u7upsrKSLi4uZMSKtkSfn5/w+/0oLCxEdXU1FhYW4Ha7ZRTo6OjAzMwMVGJkZWVhbGxMRjRIIhOTk5NUX1/PG50KVR52EQwGRTGjdbCxsYGenh5kZGTg5OSEtevra0xPT0OVh1v04+MDZ2dn7LKtrQ0rKys8LxltgvT0dNhsNry+vqKrqwvj4+MYHh7mrjLOhs/n47L09fXx/MzMTLy/v/O7BXFiYn5+npqbm0l1D6kvp87OTi7F7Ows7e3t0e7uLg0MDNDt7S1FIhGqra2lUCgkq81oHeTm5nI7Gi6Ki4tRUlKC5eVlqM5hfXNzE1VVVRyr32BNHTpZbUabIBAIwOVysXWDoaEhRKNRrrNyAbvdDq/Xy2Pl5eVQbrG4uMixhW8jZtRiGh0dlSiBqjOpFpYogTF/ZGREIjNaB42NjdjZ2YFqU1G+Mb48Lc285PHxEQcHB2hpaRElCUlkQnUKVVRUkCqLKD9j9L+xyerGFcWM1oHqFD7Bxuamoq6uju8j43LUoU2gWg85OTmWcujIzs7mTrq5uREliW8jZk5PT2l9fV2i1KgTTrFYTCIz///0UwD8A2+cFnBLpIWbAAAAAElFTkSuQmCC"
+}

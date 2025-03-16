@@ -16,19 +16,16 @@
         </NLayout>
     </NLayout>
 
-    <!-- 欢迎界面 -->
-    <Welcome />
     <!-- 第三方api弹窗 -->
     <ThirdPartyApi />
 </template>
 
 <script setup lang="ts">
-import { NLayout, NLayoutSider, NLayoutContent, NLayoutHeader} from "naive-ui"
+import { NLayout, NLayoutSider, NLayoutContent, NLayoutHeader } from "naive-ui"
 import Sider from "./components/Sider.vue";
 import Header from "./components/Header.vue";
 import Content from "./components/Content.vue";
 import KnowledgeStore from "./components/KnowledgeStore.vue";
-import Welcome from "./components/Welcome.vue";
 import ThirdPartyApi from "./components/ThirdPartyApi.vue";
 import { get_languages } from "./controller/index.tsx"
 import useIndexStore from "./store";
@@ -71,8 +68,4 @@ get_languages()
 .no-border {
     border-right: none !important
 }
-
-
-
-
 </style>

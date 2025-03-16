@@ -1,7 +1,7 @@
 {
-  "productName": "AingDesk",
-  "appId": "com.bt.AingDesk",
-  "copyright": "Guangdong Baota Safety Technology Co., Ltd.",
+  "productName": "AiChat",
+  "appId": "cn.lingo.AiChat",
+  "copyright": "",
   "directories": {
     "output": "out"
   },
@@ -30,7 +30,7 @@
     "installerHeaderIcon": "build/icons/icon.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "AingDesk"
+    "shortcutName": "AiChat"
   },
   "publish": [
     {
@@ -46,6 +46,6 @@
         "target": "nsis"
       }
     ],
-    "certificateSubjectName":""
+    "certificateSubjectName": ""
   }
 }

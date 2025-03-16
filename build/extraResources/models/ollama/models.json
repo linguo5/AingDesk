@@ -1,0 +1,11 @@
+[
+    {
+        "title": "",
+        "supplierName": "ollama",
+        "modelName": "deepseek-r1:8b",
+        "capability": [
+            "llm"
+        ],
+        "status": true
+    }
+]

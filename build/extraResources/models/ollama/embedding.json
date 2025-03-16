@@ -1,0 +1,11 @@
+[
+    {
+        "title": "",
+        "supplierName": "ollama",
+        "modelName": "bge-m3:567m",
+        "capability": [
+            "embedding"
+        ],
+        "status": true
+    }
+]

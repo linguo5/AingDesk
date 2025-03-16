@@ -17,14 +17,10 @@
                     </NButton>
                 </NDropdown>
                 <span v-if="!showModel" class="text-[var(--bt-notice-text-color)] text-14px">您当前使用的[{{ currentModel
-                    }}]模型已被禁用或删除，请重新启用或切换模型</span>
+                }}]模型已被禁用或删除，请重新启用或切换模型</span>
             </div>
         </div>
         <div class="right-tools">
-            <NButton type="success" @click="shareShow = true" >
-                <template #icon><i class="i-common:share w-16 h-16"></i></template>
-                {{ $t("分享") }}
-            </NButton>
         </div>
     </div>
 </template>
