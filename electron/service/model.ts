@@ -302,7 +302,7 @@ async function readSupplierModels(fileName: string, contextLengthFunc: (model: s
       if (!supplierConfig.supplierName || models.length === 0) {
         continue;
       }
-      if (!supplierConfig.apiKey || !supplierConfig.baseUrl || supplierConfig.status === false) {
+      if (!supplierConfig.status) {
         continue;
       }
 

@@ -497,16 +497,16 @@ ${pub.lang("图片")} ${idx + 1} ${pub.lang("OCR解析结果")} end
       try {
         res = await ollama.chat(requestOption);
       } catch (error) {
-        logger.error(pub.lang("调用模型接口时出错:"), error);
-        return pub.return_error(pub.lang("调用模型接口时出错"), error);
+        logger.error(pub.lang("Call ollama api error : "), error);
+        return pub.return_error(pub.lang("Call ollama api error : "), error);
       }
     } else {
       const modelService = new ModelService(supplierName);
       try {
         res = await modelService.chat(requestOption);
       } catch (error) {
-        logger.error(pub.lang("调用模型接口时出错:"), error);
-        return pub.return_error(pub.lang("调用模型接口时出错"), error);
+        logger.error(pub.lang("Call "+supplierName+" api error : "), error);
+        return pub.return_error(pub.lang("Call "+supplierName+" api error : "), error);
       }
     }
 

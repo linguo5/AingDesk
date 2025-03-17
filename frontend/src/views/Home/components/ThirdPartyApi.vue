@@ -264,14 +264,13 @@ const addSupplierFormRules = ref({
       trigger: "blur",
     },
   ],
-
-  apiKey: [
+  /*apiKey: [
     {
       required: true,
       message: $t("请输入API密钥"),
       trigger: "blur",
     },
-  ],
+  ],*/
   baseUrl: [
     {
       required: true,
@@ -374,8 +373,13 @@ async function delModel(modelName: string) {
  * @description 保存服务商配置
  */
 async function saveConfig() {
-  if (!applierServiceConfig.value.apiKey || !applierServiceConfig.value.baseUrl) {
-    message.error($t("请填写完整配置信息"));
+  const { currentChooseApi } = storeToRefs(useIndexStore());
+  const supplierName = currentChooseApi.value?.supplierName;
+  if (supplierName!=='ollama' && !applierServiceConfig.value.apiKey) {
+    message.error($t("缺少API密钥"));
+    return;
+  } else if (!applierServiceConfig.value.baseUrl) {
+    message.error($t("缺少API地址"));
     return;
   }
   await setSupplierConfig();
@@ -388,7 +392,9 @@ async function saveConfig() {
  * @description 检查配置是否正确
  */
 async function checkConfig() {
-  if (!applierServiceConfig.value.apiKey) {
+  const { currentChooseApi } = storeToRefs(useIndexStore());
+  const supplierName = currentChooseApi.value?.supplierName;
+  if (supplierName!=='ollama' && !applierServiceConfig.value.apiKey) {
     message.error($t("缺少API密钥"));
     return;
   } else if (!applierServiceConfig.value.baseUrl) {
