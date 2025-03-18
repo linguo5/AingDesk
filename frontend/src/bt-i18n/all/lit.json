@@ -591,8 +591,8 @@
         "src": "检查",
         "dst": "patikrinti"
     },
-    "点次获取密钥": {
-        "src": "点次获取密钥",
+    "点此获取密钥": {
+        "src": "点此获取密钥",
         "dst": "Spauskite, kad gautumėte raktą"
     },
     "API地址": {

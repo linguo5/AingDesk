@@ -48,9 +48,9 @@
             <div class="config-form">
               <NInputGroup>
                 <NInput type="password" :placeholder="$t('请输入API密钥')" v-model:value="applierServiceConfig.apiKey" />
-                <NButton @click="checkConfig">{{ $t("检查") }}</NButton>
+                <NButton @click="saveApiConfig">{{ $t("保存") }}</NButton>
               </NInputGroup>
-              <NButton type="info" text style="font-size: 12px; margin-top: 3px" @click="getKey(currentChooseApi.home)">{{ $t("点次获取密钥") }} </NButton>
+              <NButton type="info" text style="font-size: 12px; margin-top: 3px" @click="getKey(currentChooseApi.home)">{{ $t("点此获取密钥") }} </NButton>
             </div>
           </div>
           <div class="config-item">
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="config-item">
-            <NButton type="primary" @click="saveConfig">{{ $t("保存API") }}</NButton>
+            <NButton type="primary" @click="saveConfig">{{ $t("刷新模型列表") }}</NButton>
           </div>
           <div class="config-model-list">
             <div class="tit">
@@ -372,6 +372,14 @@ async function delModel(modelName: string) {
 /**
  * @description 保存服务商配置
  */
+ async function saveApiConfig() {
+  await setSupplierConfig();
+  message.success($t("配置保存成功"));
+}
+
+/**
+ * @description 保存服务商配置
+ */
 async function saveConfig() {
   const { currentChooseApi } = storeToRefs(useIndexStore());
   const supplierName = currentChooseApi.value?.supplierName;
@@ -386,23 +394,6 @@ async function saveConfig() {
   message.success($t("配置保存成功"));
   currentChooseApi.value!.status = true;
   getSupplierModelList(currentChooseApi.value!.supplierName);
-}
-
-/**
- * @description 检查配置是否正确
- */
-async function checkConfig() {
-  const { currentChooseApi } = storeToRefs(useIndexStore());
-  const supplierName = currentChooseApi.value?.supplierName;
-  if (supplierName!=='ollama' && !applierServiceConfig.value.apiKey) {
-    message.error($t("缺少API密钥"));
-    return;
-  } else if (!applierServiceConfig.value.baseUrl) {
-    message.error($t("缺少API地址"));
-    return;
-  }
-  const msg = await checkSupplierConfig();
-  message.info(msg!);
 }
 
 /***

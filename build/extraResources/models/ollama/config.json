@@ -4,7 +4,7 @@
     "baseUrl": "http://localhost:11434/v1",
     "baseUrlExample": "http://localhost:11434/v1",
     "isUseUrlExample": true,
-    "apiKey": "-",
+    "apiKey": "",
     "home": "https://ollama.org.cn",
     "help": "https://ollama.org.cn",
     "status": true,

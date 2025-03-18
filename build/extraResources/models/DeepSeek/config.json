@@ -1,7 +1,7 @@
 {
     "supplierTitle": "DeepSeek",
     "supplierName": "DeepSeek",
-    "baseUrl": "",
+    "baseUrl": "https://api.deepseek.com/v1",
     "baseUrlExample": "https://api.deepseek.com/v1",
     "isUseUrlExample": true,
     "apiKey": "",

@@ -182,47 +182,8 @@ const getUserLocation = () => {
 
 // 获取用于搜索的问题
 export const getSearchQuery = async (query: string, model: string, chatHistory: string): Promise<string> => {
-    try {
-        // 调整为直接响应
-        return query;
-
-
-        if (chatHistory.length === 0) {
-            return query;
-        }
-
-        // query最后一个字符是问号，直接返回
-        if (query[query.length - 1] === '？' || query[query.length - 1] === '?') {
-            return query;
-        }
-
-        const currentDateTime = getCurrentDateTime();
-        const userLocation = getUserLocation();
-        const { QUERY_PROMPT_TPL } = getTemplate();
-        const queryPrompt = QUERY_PROMPT_TPL
-           .replace("{question}", query)
-           .replace("{chat_history}", chatHistory)
-           .replace("{current_date_time}", currentDateTime)
-           .replace("{user_location}", userLocation);
-
-        const res = await ollama.generate({
-            prompt: queryPrompt,
-            model: model
-        });
-
-        let result = res.response;
-        if(!result) return query;
-        if (result.indexOf('</think>') !== -1) {
-            result = result.split('</think>')[1].trim();
-        }
-
-        let lines = result.trim().split('\n');
-        result = lines[lines.length - 1].trim();
-        return result;
-    } catch (error) {
-        console.error('Error getting search query:', error);
-        return query
-    }
+    // 调整为直接响应
+    return query;
 };
 
 // 生成 DeepSeek 类型的提示信息

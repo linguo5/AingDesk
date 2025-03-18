@@ -1,4 +1,3 @@
-import ollama from 'ollama';
 import * as lancedb from '@lancedb/lancedb';
 import { pub } from '../../class/public';
 import * as fs from 'fs';
@@ -95,15 +94,15 @@ export class LanceDBManager {
 
         try {
             let res:any;
+            let modelService = new ModelService(supplierName);
             if(supplierName == 'ollama'){
                 // 使用ollama服务
-                res = await ollama.embeddings({
+                res = await modelService.GetOllamaService().embeddings({
                     model: model,
                     prompt: text,
                 });
             }else{
                 // 使用第三方模型服务
-                let modelService = new ModelService(supplierName);
                 res = await modelService.embedding(model,text);
                 modelService.destroy();
                 if(!res){

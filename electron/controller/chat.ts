@@ -1,4 +1,3 @@
-import ollama from "ollama";
 import Stream from "stream";
 import { ChatService, ChatContext, ChatHistory } from "../service/chat";
 import { pub } from "../class/public";
@@ -6,10 +5,6 @@ import { logger } from "ee-core/log";
 import { getPromptForWeb } from "../search_engines/search";
 import { Rag } from "../rag/rag";
 import { ModelService, GetSupplierModels, getModelContextLength } from "../service/model";
-import path from "path";
-
-// 模型列表获取重试次数
-let MODEL_LIST_RETRY = 0;
 
 /**
  * 定义模型信息的类型
@@ -493,20 +488,20 @@ ${pub.lang("图片")} ${idx + 1} ${pub.lang("OCR解析结果")} end
     }
 
     let res: any;
+    const modelService = new ModelService(supplierName);
     if (isOllama) {
       try {
-        res = await ollama.chat(requestOption);
+        res = await modelService.GetOllamaService().chat(requestOption);
       } catch (error) {
-        logger.error(pub.lang("Call ollama api error : "), error);
-        return pub.return_error(pub.lang("Call ollama api error : "), error);
+        logger.error(pub.lang(`调用本地大模型${supplierName}/${modelName}接口异常 : `), error);
+        return pub.return_error(pub.lang(`调用本地大模型${supplierName}/${modelName}接口异常 : `), error);
       }
     } else {
-      const modelService = new ModelService(supplierName);
       try {
         res = await modelService.chat(requestOption);
       } catch (error) {
-        logger.error(pub.lang("Call "+supplierName+" api error : "), error);
-        return pub.return_error(pub.lang("Call "+supplierName+" api error : "), error);
+        logger.error(pub.lang(`调用本云端大模型${supplierName}/${modelName}接口异常 : `), error);
+        return pub.return_error(pub.lang(`调用云端大模型${supplierName}/${modelName}接口异常 : `), error);
       }
     }
 

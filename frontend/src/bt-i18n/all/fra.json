@@ -591,8 +591,8 @@
         "src": "检查",
         "dst": "Vérifier"
     },
-    "点次获取密钥": {
-        "src": "点次获取密钥",
+    "点此获取密钥": {
+        "src": "点此获取密钥",
         "dst": "Obtenir la clé par points"
     },
     "API地址": {

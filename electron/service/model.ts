@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import path from "path";
 import { pub } from "../class/public";
+import { Ollama } from 'ollama';
 
 // 定义模型信息类型
 type ModelInfo = {
@@ -253,6 +254,21 @@ export class ModelService {
       return false;
     }
   }
+
+  public GetOllamaService(){
+    let host = "http://localhost:11434";
+    if(this.baseUrl){
+      try {
+        host = new URL(this.baseUrl).origin;
+      } catch (error) {
+        const regex = /^(https?:\/\/[^\/?#]+)/;
+        const match = this.baseUrl.match(regex);
+        host = match ? match.toString() : host;
+      }
+    }
+    const ollama = new Ollama({host:host});
+    return ollama;
+  }
 }
 
 // 获取模型上下文长度
@@ -299,10 +315,10 @@ async function readSupplierModels(fileName: string, contextLengthFunc: (model: s
       const modelConfigBody = pub.read_file(modelConfigFile);
       const models = JSON.parse(modelConfigBody);
 
-      if (!supplierConfig.supplierName || models.length === 0) {
+      if (!supplierConfig.supplierName || models.length === 0 || !supplierConfig.status || !supplierConfig.baseUrl) {
         continue;
       }
-      if (!supplierConfig.status) {
+      if (!supplierConfig.apiKey && supplierConfig.supplierName!=='ollama') {
         continue;
       }
 
@@ -335,3 +351,4 @@ export async function GetSupplierModels(): Promise<{ [key: string]: ModelInfo[] 
 export async function GetSupplierEmbeddingModels(): Promise<{ [key: string]: ModelInfo[] }> {
   return readSupplierModels("embedding.json", () => 512);
 }
+

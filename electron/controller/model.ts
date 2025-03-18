@@ -1,7 +1,6 @@
 import { pub, ReturnMsg as Result } from "../class/public";
 import path from "path";
 import { ModelService } from "../service/model";
-import ollama from "ollama";
 
 // 定义模型供应商信息类型
 type SupplierInfo = {
@@ -269,10 +268,16 @@ class ModelController {
       }
     }
 
-    //排序，已添加的拍前面
-    models = models.sort((a, b) => {
-      if (a.status === b.status) return 0;
-      return a.status ? -1 : 1;
+    //排序，已添加的排前面
+    // 先按 status 降序（true 在前），再按 title 升序
+    models.sort((a, b) => {
+      // 将布尔值转换为数字比较（true=1, false=0）
+      const statusCompare = Number(b.status) - Number(a.status); // 实现 true 在前
+      if (statusCompare !== 0) {
+        return statusCompare;
+      } else {
+        return a.title.localeCompare(b.title); // 字符串升序
+      }
     });
 
     return this.handleResult(true, pub.lang("获取成功"), models);
@@ -571,7 +576,7 @@ class ModelController {
   async get_online_models(args: { supplierName: string }): Promise<Result> {
     let modelService = new ModelService(args.supplierName);
     if (args.supplierName === "ollama") {
-      const res = await ollama.list();
+      const res = await modelService.GetOllamaService().list();
       let models: any[] = [];
       // 遍历模型信息，将其添加到 ModelListInfo 中
       res.models.forEach((modelInfo) => {

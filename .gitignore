@@ -1,8 +1,7 @@
 .DS_Store
 node_modules
-public
+public/dist
+public/electron
 logs
-package-lock.json
-yarn.lock
 data
 out

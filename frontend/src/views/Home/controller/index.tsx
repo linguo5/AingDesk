@@ -40,7 +40,6 @@ function getIndexStore() {
 export async function get_model_list() {
   const { modelList, currentModel, currentSupplierName } = getIndexStore();
   const res = await post("/chat/get_model_list");
-  console.log('res===>',res)
   modelList.value = Object.values(res.message).reduce((p: any, v: any) => {
     return [
       ...p,

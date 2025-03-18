@@ -587,8 +587,8 @@
         "src": "检查",
         "dst": "ellenőrzés"
     },
-    "点次获取密钥": {
-        "src": "点次获取密钥",
+    "点此获取密钥": {
+        "src": "点此获取密钥",
         "dst": "A kulcs megszerzése"
     },
     "API地址": {
